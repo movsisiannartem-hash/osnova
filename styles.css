@@ -167,13 +167,9 @@ body {
 }
 
 @media (max-width: 1023px) {
+  .hero-image-wrap,
   .hero-girl-img {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    height: 480px;
-    width: 100%;
-    object-position: right bottom !important;
+    display: none !important;
   }
 }
 
