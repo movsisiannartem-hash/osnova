@@ -44,6 +44,31 @@ if (typeof lucide === 'undefined') {
 // OSNOVA Manicure Studio - Interactive Script
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Trigger Hero Page Load Animation
+  requestAnimationFrame(() => {
+    document.body.classList.add('page-loaded');
+  });
+
+  // Scroll Reveal IntersectionObserver
+  const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-zoom');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+
   // 1. Header Scroll State (Frosted Glass on scroll, transparent at top) & Scroll Progress Indicator
   const mainHeader = document.getElementById('mainHeader');
   const scrollProgressBar = document.getElementById('scrollProgressBar');
