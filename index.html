@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSNOVA — Студия маникюра и педикюра в Краснодаре</title>
+  <meta name="description" content="Премиальная студия маникюра и педикюра «Основа» (OSNOVA) в Краснодаре. Безупречное качество, утончённая атмосфера и естественная роскошь. ул. Коммунаров, 266.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgMain: '#F1EAE4',
+            bgSecondary: '#E8DDD3',
+            surfaceLight: '#FAF7F4',
+            textMain: '#171412',
+            textSecondary: '#75675E',
+            accent: '#B58A69',
+            accentHover: '#9E7453',
+            divider: '#D9CBC0',
+            darkSection: '#211C19',
+            darkSurface: '#2C2420',
+          },
+          fontFamily: {
+            sans: ['Manrope', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#F1EAE4] text-[#171412] font-sans antialiased selection:bg-[#B58A69]/20 selection:text-[#171412]">
+
+  <!-- ==================== HEADER / NAVIGATION (Frosted Glass Background + Scroll Progress Bar) ==================== -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 header-glass-bar py-3.5 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#hero" class="group flex items-center transition-opacity hover:opacity-80 focus:outline-none" aria-label="OSNOVA главная">
+        <img src="assets/logo.png" alt="OSNOVA MANICURE" class="h-9 sm:h-11 w-auto object-contain">
+      </a>
+
+      <!-- Desktop Navigation Capsule (Style from Photo 1 reference) -->
+      <nav class="hidden md:flex items-center space-x-1 frosted-capsule rounded-full p-1.5" aria-label="Основное меню">
+        <a href="#hero" class="nav-link active-light-pill px-5 py-2 text-xs lg:text-sm font-medium rounded-full transition duration-300">Главная</a>
+        <a href="#services" class="nav-link px-5 py-2 text-xs lg:text-sm font-medium rounded-full text-[#4A3E39] hover:text-[#171412] hover:bg-white/40 transition duration-300">Услуги</a>
+        <a href="#gallery" class="nav-link px-5 py-2 text-xs lg:text-sm font-medium rounded-full text-[#4A3E39] hover:text-[#171412] hover:bg-white/40 transition duration-300">Работы</a>
+        <a href="#reviews" class="nav-link px-5 py-2 text-xs lg:text-sm font-medium rounded-full text-[#4A3E39] hover:text-[#171412] hover:bg-white/40 transition duration-300">Отзывы</a>
+        <a href="#contacts" class="nav-link px-5 py-2 text-xs lg:text-sm font-medium rounded-full text-[#4A3E39] hover:text-[#171412] hover:bg-white/40 transition duration-300">Контакты</a>
+      </nav>
+
+      <!-- Desktop Book Button & Mobile Burger -->
+      <div class="flex items-center space-x-3">
+        <button data-open-booking class="btn-luxury hidden sm:inline-flex items-center justify-center bg-[#FAF7F4] text-[#171412] border border-[#D9CBC0]/60 px-6 py-2.5 rounded-full text-xs lg:text-sm font-medium shadow-sm hover:bg-[#171412] hover:text-[#FAF7F4] hover:border-[#171412] transition duration-300">
+          Записаться
+        </button>
+
+        <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-[#FAF7F4]/90 border border-[#D9CBC0]/70 text-[#171412] shadow-sm focus:outline-none" aria-label="Открыть меню">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Smooth Scroll Progress Bar at the bottom of the header (visible on scroll) -->
+    <div id="scrollProgressContainer" class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#D9CBC0]/25 overflow-hidden pointer-events-none opacity-0 transition-opacity duration-300">
+      <div id="scrollProgressBar" class="h-full bg-gradient-to-r from-[#B58A69] via-[#C49B7A] to-[#9E7453] w-full origin-left scale-x-0 will-change-transform"></div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Drawer -->
+  <div id="mobileBackdrop" class="fixed inset-0 bg-[#171412]/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#FAF7F4] z-50 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-[#D9CBC0]/60">
+        <img src="assets/logo.png" alt="OSNOVA" class="h-8 w-auto">
+        <button id="closeMobileMenuBtn" class="w-9 h-9 rounded-full bg-[#E8DDD3]/50 flex items-center justify-center text-[#171412]" aria-label="Закрыть меню">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <nav class="mt-8 flex flex-col space-y-4">
+        <a href="#hero" class="mobile-nav-link text-lg font-light text-[#171412] py-2 border-b border-[#D9CBC0]/30 hover:text-[#B58A69] transition">Главная</a>
+        <a href="#services" class="mobile-nav-link text-lg font-light text-[#171412] py-2 border-b border-[#D9CBC0]/30 hover:text-[#B58A69] transition">Услуги и цены</a>
+        <a href="#gallery" class="mobile-nav-link text-lg font-light text-[#171412] py-2 border-b border-[#D9CBC0]/30 hover:text-[#B58A69] transition">Наши работы</a>
+        <a href="#reviews" class="mobile-nav-link text-lg font-light text-[#171412] py-2 border-b border-[#D9CBC0]/30 hover:text-[#B58A69] transition">Отзывы гостей</a>
+        <a href="#contacts" class="mobile-nav-link text-lg font-light text-[#171412] py-2 border-b border-[#D9CBC0]/30 hover:text-[#B58A69] transition">Контакты</a>
+      </nav>
+    </div>
+
+    <div class="space-y-4 pt-6 border-t border-[#D9CBC0]/60">
+      <button data-open-booking class="w-full bg-[#171412] text-[#FAF7F4] py-3.5 rounded-full text-sm font-medium hover:bg-[#B58A69] transition duration-300">
+        Записаться на процедуру
+      </button>
+      <div class="text-center">
+        <a href="tel:+79183484208" class="text-sm font-medium text-[#75675E] hover:text-[#171412] transition">
+          +7 (918) 348-42-08
+        </a>
+        <p class="text-xs text-[#75675E]/70 mt-1">Краснодар, ул. Коммунаров, 266</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== HERO SECTION (Warm Beige #EEE6E0 matching Model Photo, Editorial Typography) ==================== -->
+  <section id="hero" class="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#EEE6E0]">
+    
+    <!-- Hero Main Container (Desktop 2-columns / Mobile stack) -->
+    <div class="relative w-full flex-1 flex flex-col lg:flex-row items-center lg:items-stretch min-h-[100svh]">
+      
+      <!-- Left Column: Typography & CTAs (approx 48% width on desktop) -->
+      <div class="w-full lg:w-[48%] xl:w-[46%] flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-24 lg:pr-4 pt-28 sm:pt-32 lg:pt-20 pb-12 lg:pb-16 z-10">
+        
+        <div class="max-w-xl">
+          <!-- Subtle Category Capsule -->
+          <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-white/50 backdrop-blur-sm border border-[#D9CBC0]/60 text-xs font-medium tracking-luxury uppercase text-[#75675E] mb-6 shadow-xs w-fit">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#B58A69]"></span>
+            <span>Студия маникюра & педикюра</span>
+          </div>
+
+          <!-- Main Luxury Headline -->
+          <h1 class="text-4xl sm:text-6xl xl:text-[74px] font-light leading-[1.04] tracking-[-0.035em] text-[#171412] mb-6 font-display">
+            Чистая эстетика<br>вашего стиля
+          </h1>
+
+          <!-- Editorial Subtitle -->
+          <p class="text-base sm:text-lg text-[#75675E] font-light leading-relaxed max-w-md mb-8">
+            Индивидуальная геометрия формы, безопасные авторские техники и стойкое покрытие в пространстве спокойной роскоши.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4">
+            <button data-open-booking class="btn-luxury inline-flex items-center space-x-3 bg-[#171412] text-[#FAF7F4] px-8 py-4 rounded-full text-sm sm:text-base font-medium shadow-soft hover:bg-[#B58A69] hover:text-[#FAF7F4] transition duration-300">
+              <span>Забронировать визит</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+            <a href="#gallery" class="btn-luxury inline-flex items-center space-x-2 text-sm sm:text-base font-medium text-[#171412] px-7 py-4 rounded-full border border-[#D9CBC0] bg-[#FAF7F4] hover:bg-white hover:border-[#171412] transition duration-300 shadow-xs">
+              <span>Смотреть работы</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-[#75675E]"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Visual of Model (User's Photo, Anchored to Right Bottom with Smooth Fade) -->
+      <div class="hero-image-wrap w-full lg:absolute lg:top-0 lg:right-0 lg:bottom-0 lg:w-[58%] xl:w-[60%] lg:h-full relative min-h-[460px] sm:min-h-[560px] flex items-end justify-end overflow-hidden pointer-events-none select-none bg-transparent">
+        
+        <!-- Hero Photo: Exact uploaded image -->
+        <img 
+          src="public/images/hero-girl.webp" 
+          onerror="this.src='assets/hero-girl.webp'"
+          alt="Премиальный маникюр OSNOVA" 
+          class="hero-girl-img pointer-events-none select-none"
+        >
+
+      </div>
+
+    </div>
+
+    <!-- Subtle Bottom Seam Cushion between Hero (#EEE6E0) and Services (#F1EAE4) -->
+    <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-[#F1EAE4] pointer-events-none z-10"></div>
+
+  </section>
+
+  <!-- ==================== SERVICES & PRICES ACCORDION TABLE ==================== -->
+  <section id="services" class="py-24 sm:py-32 px-6 sm:px-12 lg:px-24 bg-[#F1EAE4]">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-medium tracking-luxury uppercase text-[#B58A69] block mb-3">01 / Прайс-лист</span>
+        <h2 class="text-3xl sm:text-5xl font-light tracking-[-0.03em] text-[#171412] font-display">
+          Услуги и стоимость
+        </h2>
+        <p class="text-sm sm:text-base text-[#75675E] mt-4 font-normal leading-relaxed">
+          Прозрачное ценообразование и высочайший стандарт исполнения. Нажмите на услугу для просмотра деталей.
+        </p>
+
+        <!-- Category Filter Tabs (Soft Light Pill Style, No Black!) -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-1.5 p-1.5 rounded-full frosted-capsule mt-8">
+          <button data-category="all" class="service-tab-btn active-light-pill px-5 py-2 text-xs sm:text-sm font-medium rounded-full transition duration-300">
+            Все категории
+          </button>
+          <button data-category="top" class="service-tab-btn px-5 py-2 text-xs sm:text-sm font-medium rounded-full text-[#75675E] hover:text-[#171412] hover:bg-white/40 transition duration-300">
+            Топ-мастер
+          </button>
+          <button data-category="brows" class="service-tab-btn px-5 py-2 text-xs sm:text-sm font-medium rounded-full text-[#75675E] hover:text-[#171412] hover:bg-white/40 transition duration-300">
+            Брови
+          </button>
+          <button data-category="expert" class="service-tab-btn px-5 py-2 text-xs sm:text-sm font-medium rounded-full text-[#75675E] hover:text-[#171412] hover:bg-white/40 transition duration-300">
+            Мастер-эксперт
+          </button>
+          <button data-category="design" class="service-tab-btn px-5 py-2 text-xs sm:text-sm font-medium rounded-full text-[#75675E] hover:text-[#171412] hover:bg-white/40 transition duration-300">
+            Дизайн
+          </button>
+        </div>
+      </div>
+
+      <!-- ACCORDION TABLE (Completely Neat, No Overlapping) -->
+      <div class="space-y-12">
+
+        <!-- 1. CATEGORY: ТОП-МАСТЕР -->
+        <div class="services-category-group" data-category="top">
+          <div class="flex items-center space-x-4 mb-6">
+            <h3 class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69]">ТОП-МАСТЕР</h3>
+            <div class="h-px flex-1 bg-[#D9CBC0]/70"></div>
+          </div>
+
+          <div class="divide-y divide-[#D9CBC0]">
+
+            <!-- Row 1 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Педикюр полный с обработкой стопы
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Комплексная гигиеническая обработка стопы и пальчиков с удалением ороговевшей кожи, оформлением ногтей и нанесением питательного ухода.
+                  </p>
+                  <button data-open-booking data-service="Педикюр полный с обработкой стопы (2500 ₽)" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Педикюр полный с обработкой стопы
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 200 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Базовая комплексная обработка стоп и пальчиков в деликатной аппаратной технике для поддержания гладкости кожи и ухоженного вида.
+                  </p>
+                  <button data-open-booking data-service="Педикюр полный с обработкой стопы (2200 ₽)" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Педикюр: обработка и покрытие пальчиков
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 900 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Аккуратная обработка кутикулы, придание формы ногтевой пластине и нанесение стойкого покрытия гель-лаком.
+                  </p>
+                  <button data-open-booking data-service="Педикюр: обработка и покрытие пальчиков (1900 ₽)" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Педикюр: обработка и покрытие пальчиков
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 900 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Экспресс-уход за пальчиками стоп с бережной обработкой околоногтевых валиков и ровным стойким покрытием.
+                  </p>
+                  <button data-open-booking data-service="Педикюр: обработка и покрытие пальчиков (1900 ₽)" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Коррекция нарощенных ногтей (топ-мастер Полина)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Восстановление архитектуры и формы нарощенных ногтей с обновлением моделирующего материала от топ-мастера Полины.
+                  </p>
+                  <button data-open-booking data-service="Коррекция нарощенных ногтей (топ-мастер Полина) — 2500 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 6 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Наращивание ногтей (топ-мастер Полина)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 800 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Моделирование новой длины и безупречной формы ногтей с правильным распределением апекса и стойким результатом от топ-мастера Полины.
+                  </p>
+                  <button data-open-booking data-service="Наращивание ногтей (топ-мастер Полина) — 2800 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Коррекция нарощенных ногтей (топ-мастер Нила)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Качественная коррекция длины и правильной архитектуры искусственных ногтей от топ-мастера Нилы.
+                  </p>
+                  <button data-open-booking data-service="Коррекция нарощенных ногтей (топ-мастер Нила) — 2500 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 8 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Наращивание ногтей (топ-мастер Нила)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 800 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Индивидуальное наращивание ногтей желаемой длины и формы с аккуратной выкладкой материала от топ-мастера Нилы.
+                  </p>
+                  <button data-open-booking data-service="Наращивание ногтей (топ-мастер Нила) — 2800 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. CATEGORY: БРОВИ -->
+        <div class="services-category-group" data-category="brows">
+          <div class="flex items-center space-x-4 mb-6">
+            <h3 class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69]">БРОВИ</h3>
+            <div class="h-px flex-1 bg-[#D9CBC0]/70"></div>
+          </div>
+
+          <div class="divide-y divide-[#D9CBC0]">
+
+            <!-- Row 1 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Коррекция бровей (мастер Наира)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 000 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Чистая коррекция формы бровей пинцетом и воском с учётом естественной геометрии лица от мастера Наиры.
+                  </p>
+                  <button data-open-booking data-service="Коррекция бровей (мастер Наира) — 1000 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Окрашивание бровей с коррекцией (мастер Наира)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 800 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Подбор естественного гармоничного оттенка, стойкое окрашивание и выверенное моделирование формы бровей.
+                  </p>
+                  <button data-open-booking data-service="Окрашивание бровей с коррекцией (мастер Наира) — 1800 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Ламинирование бровей с коррекцией (мастер Наира)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 600 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Долговременная укладка волосков в желаемом направлении с бережным уходом и чистой коррекцией формы.
+                  </p>
+                  <button data-open-booking data-service="Ламинирование бровей с коррекцией (мастер Наира) — 1600 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Ламинирование бровей с окрашиванием и коррекцией (мастер Наира)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Полный премиум-комплекс для бровей: долговременная фиксация формы, глубокий цвет и безукоризненная коррекция.
+                  </p>
+                  <button data-open-booking data-service="Ламинирование бровей с окрашиванием и коррекцией (мастер Наира) — 2500 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Осветление бровей (мастер Наира)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 800 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Мягкое деликатное осветление волосков для создания воздушного, трендового и визуально лёгкого образа.
+                  </p>
+                  <button data-open-booking data-service="Осветление бровей (мастер Наира) — 1800 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. CATEGORY: МАСТЕР-ЭКСПЕРТ -->
+        <div class="services-category-group" data-category="expert">
+          <div class="flex items-center space-x-4 mb-6">
+            <h3 class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69]">МАСТЕР-ЭКСПЕРТ</h3>
+            <div class="h-px flex-1 bg-[#D9CBC0]/70"></div>
+          </div>
+
+          <div class="divide-y divide-[#D9CBC0]">
+
+            <!-- Row 1 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Коррекция нарощенных ногтей (мастер-эксперт Вероника)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  2 700 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Экспертная коррекция архитектуры ногтей повышенной сложности с ювелирной точностью от мастера-эксперта Вероники.
+                  </p>
+                  <button data-open-booking data-service="Коррекция нарощенных ногтей (мастер-эксперт Вероника) — 2700 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Наращивание ногтей (мастер-эксперт Вероника)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  3 300 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Флагманское наращивание ногтей любой желаемой длины и архитектуры с максимальной прочностью от мастера-эксперта Вероники.
+                  </p>
+                  <button data-open-booking data-service="Наращивание ногтей (мастер-эксперт Вероника) — 3300 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Мужской маникюр (мастер-эксперт Вероника)
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  1 500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Деликатная гигиеническая обработка кутикулы и ногтевой пластины без лишнего блеска для ухоженного, статусного вида рук.
+                  </p>
+                  <button data-open-booking data-service="Мужской маникюр (мастер-эксперт Вероника) — 1500 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 4. CATEGORY: ДИЗАЙН МАНИКЮРА И ПЕДИКЮРА -->
+        <div class="services-category-group" data-category="design">
+          <div class="flex items-center space-x-4 mb-6">
+            <h3 class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69]">ДИЗАЙН МАНИКЮРА И ПЕДИКЮРА</h3>
+            <div class="h-px flex-1 bg-[#D9CBC0]/70"></div>
+          </div>
+
+          <div class="divide-y divide-[#D9CBC0]">
+
+            <!-- Row 1 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Френч
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  300 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Французский маникюр с идеально выверенной, тонкой линией улыбки в классическом белом или трендовых оттенках.
+                  </p>
+                  <button data-open-booking data-service="Френч — 300 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="accordion-item py-4 sm:py-5 group">
+              <button class="accordion-trigger w-full flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+                <div class="flex items-center space-x-3 sm:space-x-4 pr-4">
+                  <span class="text-base sm:text-lg font-normal text-[#171412] group-hover:text-[#B58A69] transition">
+                    Аэрография любой сложности
+                  </span>
+                  <i data-lucide="chevron-down" class="accordion-chevron w-4 h-4 text-[#75675E] flex-shrink-0"></i>
+                </div>
+                <div class="text-base sm:text-lg font-medium text-[#171412] whitespace-nowrap pl-4">
+                  500 ₽
+                </div>
+              </button>
+              <div class="accordion-panel">
+                <div class="pt-4 pb-2 border-t border-[#D9CBC0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-sm text-[#75675E] max-w-xl leading-relaxed">
+                    Нежнейшие градиенты, эффекты омбре и воздушные переходы оттенков с использованием профессионального аэрографа.
+                  </p>
+                  <button data-open-booking data-service="Аэрография любой сложности — 500 ₽" class="btn-luxury inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] border border-[#D9CBC0] px-5 py-2 rounded-full hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200 self-start sm:self-auto flex-shrink-0 shadow-sm">
+                    <span>Записаться</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Price Table Clarification Note -->
+      <div class="mt-12 p-6 rounded-2xl bg-[#E8DDD3]/40 border border-[#D9CBC0]/60 text-xs sm:text-sm text-[#75675E] leading-relaxed">
+        <div class="flex items-start space-x-3">
+          <i data-lucide="info" class="w-4 h-4 text-[#B58A69] mt-0.5 flex-shrink-0"></i>
+          <div>
+            <span class="font-medium text-[#171412]">Информация о стоимости:</span>
+            Услуги с одинаковым наименованием могут варьироваться по стоимости в зависимости от категории выбранного мастера, исходного состояния ногтевой пластины или дополнительного объёма ухода. Перед началом процедуры специалист детально согласует с вами все нюансы.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GALLERY / OUR WORKS ==================== -->
+  <section id="gallery" class="py-24 sm:py-32 px-6 sm:px-12 lg:px-24 bg-[#FAF7F4] border-t border-[#D9CBC0]/40">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b border-[#D9CBC0]/60">
+        <div>
+          <span class="text-xs font-medium tracking-luxury uppercase text-[#B58A69] block mb-3">02 / Портфолио</span>
+          <h2 class="text-3xl sm:text-5xl font-light tracking-[-0.03em] text-[#171412] font-display">
+            Наши работы
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-[#75675E] max-w-md mt-4 md:mt-0 font-normal leading-relaxed">
+          Галерея реализованных работ мастеров студии OSNOVA.
+        </p>
+      </div>
+
+      <!-- Clean Minimalist Grid with Placeholders: "Тут должны быть фотки" (As instructed) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Placeholder 1 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Нюдовый маникюр</span>
+        </div>
+
+        <!-- Placeholder 2 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Форма & Архитектура</span>
+        </div>
+
+        <!-- Placeholder 3 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Педикюр & Спа-уход</span>
+        </div>
+
+        <!-- Placeholder 4 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Авторский френч</span>
+        </div>
+
+        <!-- Placeholder 5 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Ламинирование бровей</span>
+        </div>
+
+        <!-- Placeholder 6 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-[#F1EAE4] border border-[#D9CBC0] aspect-[4/5] flex flex-col items-center justify-center p-8 text-center shadow-soft hover:border-[#B58A69] transition duration-300">
+          <div class="w-14 h-14 rounded-full bg-[#E8DDD3]/60 flex items-center justify-center text-[#B58A69] mb-4 group-hover:scale-110 transition duration-300">
+            <i data-lucide="image" class="w-6 h-6"></i>
+          </div>
+          <p class="text-lg font-light text-[#171412] font-display">Тут должны быть фотки</p>
+          <span class="text-xs text-[#75675E] tracking-luxury uppercase mt-1">Наращивание ногтей</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GUEST REVIEWS / PROOF ==================== -->
+  <section id="reviews" class="py-24 sm:py-32 px-6 sm:px-12 lg:px-24 bg-[#E8DDD3]/30 border-t border-[#D9CBC0]/40">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header with Verified Yandex Badge -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 pb-8 border-b border-[#D9CBC0]/60 gap-6">
+        <div>
+          <span class="text-xs font-medium tracking-luxury uppercase text-[#B58A69] block mb-3">03 / Отзывы и репутация</span>
+          <h2 class="text-3xl sm:text-5xl font-light tracking-[-0.03em] text-[#171412] font-display">
+            Нам доверяют самое ценное
+          </h2>
+        </div>
+
+        <!-- Yandex Maps Live Score Pill -->
+        <a href="https://yandex.ru/maps/org/osnova_manikyura/221055728812/?indoorLevel=1&ll=38.982455%2C45.046368&z=17" target="_blank" rel="noopener noreferrer" class="group p-4 rounded-2xl bg-[#FAF7F4] border border-[#D9CBC0]/70 shadow-soft flex items-center space-x-4 hover:border-[#B58A69] transition duration-300">
+          <div class="w-12 h-12 rounded-xl bg-[#171412] text-[#FAF7F4] flex flex-col items-center justify-center flex-shrink-0">
+            <span class="text-sm font-bold leading-none text-[#B58A69]">5.0</span>
+            <div class="flex text-[#B58A69] mt-0.5">
+              <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center space-x-1.5 text-xs font-medium text-[#171412]">
+              <span>140+ отзывов на Яндекс Картах</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-[#B58A69] group-hover:translate-x-0.5 transition"></i>
+            </div>
+            <p class="text-[11px] text-[#75675E] mt-0.5">100% гостей рекомендуют студию OSNOVA</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Reviews Grid (6 authentic reviews) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Review 1 (Manicure) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="manicure">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                Топ-мастер Полина
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Потрясающая студия в самом центре! Делала наращивание у Полины — это восторг. Форма держится больше месяца без сколов и отслоек. Очень тихо, играет приятная музыка, угощают вкусным кофе.»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                ЕМ
+              </div>
+              <span class="font-medium text-[#171412]">Екатерина М.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">Яндекс Карты</span>
+          </div>
+        </div>
+
+        <!-- Review 2 (Pedicure) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="pedicure">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                Smart-педикюр
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Педикюр выше всяких похвал. Кожа гладкая как шелк, обработка пальчиков ювелирная. Приятно приходить в место, где всё продумано до мелочей. Однозначно рекомендую студию Основа!»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                АВ
+              </div>
+              <span class="font-medium text-[#171412]">Анна В.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">Яндекс Карты</span>
+          </div>
+        </div>
+
+        <!-- Review 3 (Service & Brows) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="service">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                Брови & Маникюр
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Хожу к Наире на оформление бровей и на маникюр к эксперту Веронике. Сервис высочайшего уровня: всё стерильно, деликатно, вежливо и красиво. Радует, что рядом удобная парковка у ТК Центр Города.»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                МС
+              </div>
+              <span class="font-medium text-[#171412]">Мария С.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">2ГИС</span>
+          </div>
+        </div>
+
+        <!-- Review 4 (4 Hands Complex) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="service">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                Комплекс в 4 руки
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Комплекс в 4 руки — это спасение для тех, кто ценит время! За полтора часа сделали идеальный нюдовый маникюр и аккуратный педикюр. Никакой спешки, кресла невероятно удобные, вышла абсолютно отдохнувшей.»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                КЛ
+              </div>
+              <span class="font-medium text-[#171412]">Ксения Л.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">Яндекс Карты</span>
+          </div>
+        </div>
+
+        <!-- Review 5 (Manicure LUXIO) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="manicure">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                LUXIO Покрытие
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Идеальные тонкие торцы и безупречные блики. Маникюр держится железно 4 недели, кутикула отрастает незаметно и аккуратно. Крафт-пакет вскрывали прямо при мне, инструменты абсолютно стерильные.»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                ДК
+              </div>
+              <span class="font-medium text-[#171412]">Дарья К.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">Яндекс Карты</span>
+          </div>
+        </div>
+
+        <!-- Review 6 (Pedicure / SPA) -->
+        <div class="review-card-item luxury-card-hover p-8 rounded-3xl bg-[#FAF7F4] border border-[#D9CBC0]/60 shadow-soft flex flex-col justify-between" data-review-category="pedicure">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-[#B58A69]">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <span class="text-[11px] font-medium tracking-luxury uppercase px-2.5 py-1 rounded-full bg-[#E8DDD3]/50 text-[#75675E]">
+                SPA-уход & Педикюр
+              </span>
+            </div>
+            <p class="text-sm text-[#171412] font-light leading-relaxed mb-6">
+              «Приятная, спокойная атмосфера, без навязчивых разговоров и телевизора. Вкусный капучино на миндальном молоке. Мастера очень внимательные к форме ногтей и чувствительной коже.»
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#D9CBC0]/40 flex items-center justify-between text-xs text-[#75675E]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center text-[10px] font-medium">
+                ОП
+              </div>
+              <span class="font-medium text-[#171412]">Ольга П.</span>
+            </div>
+            <span class="text-[11px] text-[#75675E]/80">Яндекс Карты</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Button to Maps -->
+      <div class="mt-12 text-center">
+        <a href="https://yandex.ru/maps/org/osnova_manikyura/221055728812/?indoorLevel=1&ll=38.982455%2C45.046368&z=17" target="_blank" rel="noopener noreferrer" class="btn-luxury inline-flex items-center space-x-2 text-xs sm:text-sm font-medium text-[#171412] hover:text-[#B58A69] px-6 py-3.5 rounded-full border border-[#D9CBC0] bg-[#FAF7F4] transition duration-300 shadow-soft">
+          <span>Оставить отзыв на Яндекс Картах</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== BOOKING CTA BLOCK ==================== -->
+  <section class="py-24 sm:py-32 px-6 sm:px-12 lg:px-24 bg-[#211C19] text-[#FAF7F4] relative overflow-hidden">
+    
+    <!-- Subtle Background Ambient Glow -->
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#B58A69]/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#B58A69]/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      
+      <span class="text-xs font-medium tracking-luxury uppercase text-[#B58A69] block mb-4">
+        Онлайн-бронирование
+      </span>
+
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-[#FAF7F4] font-display mb-6">
+        Ваше время для безупречной заботы
+      </h2>
+
+      <p class="text-base sm:text-lg text-[#FAF7F4]/70 max-w-xl mx-auto font-normal leading-relaxed mb-10">
+        Выберите удобное время визита через нашу форму, напишите нам в мессенджер или забронируйте через официальную карточку на Яндекс Картах.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        
+        <!-- 1. Open Site Modal Booking -->
+        <button data-open-booking class="btn-luxury inline-flex items-center space-x-3 bg-[#FAF7F4] text-[#171412] px-8 py-4 rounded-full text-sm sm:text-base font-medium shadow-card hover:bg-[#B58A69] hover:text-[#FAF7F4] transition duration-300">
+          <span>Записаться онлайн</span>
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+        </button>
+
+        <!-- 2. WhatsApp Direct Link -->
+        <a href="https://wa.me/79183484208?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8E%20OSNOVA" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-luxury inline-flex items-center space-x-3 bg-transparent border border-[#FAF7F4]/30 text-[#FAF7F4] px-8 py-4 rounded-full text-sm sm:text-base font-medium hover:bg-[#FAF7F4]/10 transition duration-300">
+          <i data-lucide="message-circle" class="w-4 h-4 text-[#B58A69]"></i>
+          <span>Написать в WhatsApp</span>
+        </a>
+
+        <!-- 3. Direct Phone Call -->
+        <a href="tel:+79183484208" class="btn-luxury inline-flex items-center space-x-2 text-sm sm:text-base text-[#FAF7F4]/80 hover:text-[#FAF7F4] px-6 py-4 transition">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>+7 (918) 348-42-08</span>
+        </a>
+
+      </div>
+
+      <!-- Trust note -->
+      <p class="text-xs text-[#FAF7F4]/50 mt-8">
+        Принимаем гостей ежедневно с 10:00 до 21:00 · Краснодар, ул. Коммунаров, 266
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTS & LOCATION SECTION ==================== -->
+  <section id="contacts" class="py-24 sm:py-32 px-6 sm:px-12 lg:px-24 bg-[#FAF7F4] border-t border-[#D9CBC0]/40">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left: Verified Contact Information (5 cols) -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-xs font-medium tracking-luxury uppercase text-[#B58A69] block mb-3">04 / Контакты</span>
+            <h2 class="text-3xl sm:text-5xl font-light tracking-[-0.03em] text-[#171412] font-display">
+              Как нас найти
+            </h2>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            
+            <!-- Address with Copy Button -->
+            <div class="flex items-start justify-between p-5 rounded-2xl bg-[#F1EAE4]/80 border border-[#D9CBC0]/60 hover:border-[#B58A69] transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="w-10 h-10 rounded-full bg-[#E8DDD3]/80 flex items-center justify-center text-[#171412] flex-shrink-0 mt-0.5">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-[#B58A69]"></i>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-luxury text-[#75675E]">Адрес студии</h3>
+                  <p class="text-base sm:text-lg font-normal text-[#171412] mt-1">
+                    г. Краснодар, Центральный микрорайон,<br>улица Коммунаров, 266
+                  </p>
+                  <p class="text-xs text-[#75675E] mt-1">
+                    3 этаж, офис 77 · Ориентир: ТК «Центр Города»
+                  </p>
+                </div>
+              </div>
+              <button type="button" data-copy="г. Краснодар, ул. Коммунаров, 266" data-copy-label="Адрес студии" class="w-9 h-9 rounded-full bg-white/70 hover:bg-white flex items-center justify-center text-[#75675E] hover:text-[#171412] transition shadow-xs flex-shrink-0 ml-2" title="Скопировать адрес">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Schedule -->
+            <div class="flex items-start space-x-4 p-5 rounded-2xl bg-[#F1EAE4]/80 border border-[#D9CBC0]/60">
+              <div class="w-10 h-10 rounded-full bg-[#E8DDD3]/80 flex items-center justify-center text-[#171412] flex-shrink-0 mt-0.5">
+                <i data-lucide="clock" class="w-5 h-5 text-[#B58A69]"></i>
+              </div>
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-luxury text-[#75675E]">График работы</h3>
+                <p class="text-base sm:text-lg font-normal text-[#171412] mt-1">
+                  Ежедневно: 10:00 — 21:00
+                </p>
+                <p class="text-xs text-[#75675E] mt-1">
+                  Приём гостей ведётся по предварительной записи
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone with Copy Button -->
+            <div class="flex items-start justify-between p-5 rounded-2xl bg-[#F1EAE4]/80 border border-[#D9CBC0]/60 hover:border-[#B58A69] transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="w-10 h-10 rounded-full bg-[#E8DDD3]/80 flex items-center justify-center text-[#171412] flex-shrink-0 mt-0.5">
+                  <i data-lucide="phone-call" class="w-5 h-5 text-[#B58A69]"></i>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-luxury text-[#75675E]">Телефон для связи</h3>
+                  <p class="text-base sm:text-lg font-normal text-[#171412] mt-1">
+                    <a href="tel:+79183484208" class="hover:text-[#B58A69] transition">+7 (918) 348-42-08</a>
+                  </p>
+                  <p class="text-xs text-[#75675E] mt-1">
+                    Звонки и сообщения в WhatsApp / Telegram
+                  </p>
+                </div>
+              </div>
+              <button type="button" data-copy="+7 (918) 348-42-08" data-copy-label="Номер телефона" class="w-9 h-9 rounded-full bg-white/70 hover:bg-white flex items-center justify-center text-[#75675E] hover:text-[#171412] transition shadow-xs flex-shrink-0 ml-2" title="Скопировать телефон">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Yandex Maps Route Button -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a href="https://yandex.ru/maps/org/osnova_manikyura/221055728812/?indoorLevel=1&ll=38.982455%2C45.046368&z=17" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-luxury inline-flex items-center justify-center space-x-3 bg-[#171412] text-[#FAF7F4] px-8 py-4 rounded-full text-sm font-medium hover:bg-[#B58A69] transition duration-300 shadow-soft">
+              <i data-lucide="navigation" class="w-4 h-4"></i>
+              <span>Построить маршрут на Яндекс Картах</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Map Card & Location Visual (7 cols) -->
+        <div class="lg:col-span-7">
+          <div class="relative overflow-hidden rounded-3xl bg-[#E8DDD3] border border-[#D9CBC0] shadow-card aspect-[4/3] sm:aspect-[16/10] flex flex-col justify-between p-6 sm:p-8">
+            
+            <!-- Map Card Header Info -->
+            <div class="flex items-start justify-between z-10">
+              <div class="p-4 rounded-2xl bg-[#FAF7F4]/90 backdrop-blur-md border border-[#D9CBC0]/60 shadow-sm max-w-xs">
+                <div class="flex items-center space-x-2 text-xs font-semibold text-[#171412]">
+                  <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                  <span>Студия OSNOVA</span>
+                </div>
+                <p class="text-xs text-[#75675E] mt-1">Краснодар, ул. Коммунаров, 266 (офис 77)</p>
+                <div class="flex items-center space-x-1 text-xs text-[#B58A69] mt-2 font-medium">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                  <span>5.0 рейтинг (150+ отзывов)</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-2xl bg-[#FAF7F4]/90 backdrop-blur-md border border-[#D9CBC0]/60 shadow-sm text-xs font-medium text-[#171412]">
+                Рядом с ТК «Центр Города»
+              </div>
+            </div>
+
+            <!-- Stylized Minimal Map Background Graphic -->
+            <div class="absolute inset-0 opacity-40 pointer-events-none">
+              <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+                <path d="M0 120H800" stroke="#75675E" stroke-width="1.5" stroke-dasharray="4 4" />
+                <path d="M0 250H800" stroke="#75675E" stroke-width="2" />
+                <path d="M0 380H800" stroke="#75675E" stroke-width="1.5" stroke-dasharray="4 4" />
+                <path d="M220 0V500" stroke="#75675E" stroke-width="1.5" stroke-dasharray="4 4" />
+                <path d="M480 0V500" stroke="#75675E" stroke-width="2.5" />
+                <path d="M640 0V500" stroke="#75675E" stroke-width="1.5" stroke-dasharray="4 4" />
+                <rect x="360" y="160" width="180" height="140" rx="16" fill="#D9CBC0" fill-opacity="0.4" />
+              </svg>
+            </div>
+
+            <!-- Map Location Pin in Center -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="relative flex flex-col items-center">
+                <span class="absolute w-12 h-12 bg-[#B58A69]/30 rounded-full animate-ping"></span>
+                <div class="w-10 h-10 rounded-full bg-[#171412] text-[#FAF7F4] flex items-center justify-center shadow-lg border-2 border-[#FAF7F4] relative z-10">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-[#B58A69]"></i>
+                </div>
+                <div class="mt-2 px-3 py-1 bg-[#171412] text-[#FAF7F4] text-[11px] font-medium rounded-full shadow-md whitespace-nowrap">
+                  OSNOVA · Коммунаров, 266
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Bottom Actions -->
+            <div class="z-10 flex items-center justify-between">
+              <span class="text-xs text-[#75675E] bg-[#FAF7F4]/80 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                Координаты: 45.046368, 38.982455
+              </span>
+              <a href="https://yandex.ru/maps/org/osnova_manikyura/221055728812/?indoorLevel=1&ll=38.982455%2C45.046368&z=17" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="inline-flex items-center space-x-2 text-xs font-medium text-[#171412] bg-[#FAF7F4] px-4 py-2 rounded-full border border-[#D9CBC0] hover:bg-[#171412] hover:text-[#FAF7F4] transition duration-200">
+                <span>Открыть карту</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-[#211C19] text-[#FAF7F4] py-16 px-6 sm:px-12 lg:px-24 border-t border-[#FAF7F4]/10">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-[#FAF7F4]/10">
+        
+        <!-- Brand & Motto (6 cols) -->
+        <div class="md:col-span-6 space-y-4">
+          <a href="#hero" class="inline-block focus:outline-none">
+            <img src="assets/logo-light.png" alt="OSNOVA" class="h-10 w-auto object-contain">
+          </a>
+          <p class="text-sm text-[#FAF7F4]/70 max-w-sm font-light leading-relaxed">
+            OSNOVA — пространство утончённого ухода, безупречной формы и естественной эстетики вашего стиля.
+          </p>
+          <div class="pt-2 text-xs text-[#B58A69] tracking-luxury uppercase">
+            Красота · Забота · Уверенность
+          </div>
+        </div>
+
+        <!-- Legal Documents & Compliance (6 cols) -->
+        <div class="md:col-span-6 space-y-3 md:pl-8">
+          <h4 class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69]">Правовая информация</h4>
+          <ul class="space-y-2.5 text-sm text-[#FAF7F4]/80 font-light">
+            <li>
+              <button type="button" data-open-legal="privacy" class="hover:text-[#B58A69] transition text-left flex items-center space-x-1.5">
+                <span>Политика конфиденциальности</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-open-legal="terms" class="hover:text-[#B58A69] transition text-left flex items-center space-x-1.5">
+                <span>Пользовательское соглашение</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-open-legal="consent" class="hover:text-[#B58A69] transition text-left flex items-center space-x-1.5">
+                <span>Согласие на обработку данных (152-ФЗ)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-open-legal="guarantee" class="hover:text-[#B58A69] transition text-left flex items-center space-x-1.5">
+                <span>Гарантийные обязательства (7 дней)</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Credits & Legal Links -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FAF7F4]/40 gap-4">
+        <p>© 2026 Студия маникюра и педикюра «Основа» (OSNOVA). Все права защищены.</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button type="button" data-open-legal="privacy" class="hover:text-[#FAF7F4] transition">Конфиденциальность</button>
+          <span>·</span>
+          <button type="button" data-open-legal="terms" class="hover:text-[#FAF7F4] transition">Условия сервиса</button>
+          <span>·</span>
+          <button type="button" data-open-legal="consent" class="hover:text-[#FAF7F4] transition">152-ФЗ</button>
+          <span>·</span>
+          <span class="tracking-luxury uppercase">Krasnodar</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== BOOKING MODAL DIALOG ==================== -->
+  <div id="bookingModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#171412]/60 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content relative w-full max-w-lg bg-[#FAF7F4] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#D9CBC0]/60 text-[#171412]">
+      
+      <!-- Close Button -->
+      <button id="closeModalBtn" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E8DDD3]/50 flex items-center justify-center text-[#171412] hover:bg-[#171412] hover:text-[#FAF7F4] transition" aria-label="Закрыть окно">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="mb-6">
+        <span class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69] block mb-1">OSNOVA</span>
+        <h3 id="modalTitle" class="text-2xl font-light tracking-tight font-display">Запись на процедуру</h3>
+        <p class="text-xs text-[#75675E] mt-1">Оставьте ваши данные, и администратор подтвердит удобное время.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="bookingForm" class="space-y-4">
+        
+        <!-- Service Selection -->
+        <div>
+          <label for="modalServiceSelect" class="block text-xs font-medium text-[#75675E] uppercase tracking-wider mb-1.5">
+            Выберите услугу
+          </label>
+          <div class="relative">
+            <select id="modalServiceSelect" class="w-full bg-[#F1EAE4] border border-[#D9CBC0] rounded-xl px-4 py-3 text-sm text-[#171412] focus:outline-none focus:border-[#B58A69] transition appearance-none">
+              <optgroup label="ТОП-МАСТЕР">
+                <option value="Педикюр полный с обработкой стопы (2500 ₽)">Педикюр полный с обработкой стопы — 2 500 ₽</option>
+                <option value="Педикюр полный с обработкой стопы (2200 ₽)">Педикюр полный с обработкой стопы — 2 200 ₽</option>
+                <option value="Педикюр: обработка и покрытие пальчиков (1900 ₽)">Педикюр: обработка и покрытие пальчиков — 1 900 ₽</option>
+                <option value="Коррекция нарощенных ногтей (топ-мастер Полина)">Коррекция нарощенных ногтей (топ-мастер Полина) — 2 500 ₽</option>
+                <option value="Наращивание ногтей (топ-мастер Полина)">Наращивание ногтей (топ-мастер Полина) — 2 800 ₽</option>
+                <option value="Коррекция нарощенных ногтей (топ-мастер Нила)">Коррекция нарощенных ногтей (топ-мастер Нила) — 2 500 ₽</option>
+                <option value="Наращивание ногтей (топ-мастер Нила)">Наращивание ногтей (топ-мастер Нила) — 2 800 ₽</option>
+              </optgroup>
+              <optgroup label="БРОВИ">
+                <option value="Коррекция бровей (мастер Наира)">Коррекция бровей (мастер Наира) — 1 000 ₽</option>
+                <option value="Окрашивание бровей с коррекцией (мастер Наира)">Окрашивание бровей с коррекцией (мастер Наира) — 1 800 ₽</option>
+                <option value="Ламинирование бровей с коррекцией (мастер Наира)">Ламинирование бровей с коррекцией (мастер Наира) — 1 600 ₽</option>
+                <option value="Ламинирование бровей с окрашиванием и коррекцией (мастер Наира)">Ламинирование бровей с окрашиванием и коррекцией — 2 500 ₽</option>
+                <option value="Осветление бровей (мастер Наира)">Осветление бровей (мастер Наира) — 1 800 ₽</option>
+              </optgroup>
+              <optgroup label="МАСТЕР-ЭКСПЕРТ">
+                <option value="Коррекция нарощенных ногтей (мастер-эксперт Вероника)">Коррекция нарощенных ногтей (мастер Вероника) — 2 700 ₽</option>
+                <option value="Наращивание ногтей (мастер-эксперт Вероника)">Наращивание ногтей (мастер Вероника) — 3 300 ₽</option>
+                <option value="Мужской маникюр (мастер-эксперт Вероника)">Мужской маникюр (мастер Вероника) — 1 500 ₽</option>
+              </optgroup>
+              <optgroup label="ДИЗАЙН">
+                <option value="Френч">Френч — 300 ₽</option>
+                <option value="Аэрография любой сложности">Аэрография любой сложности — 500 ₽</option>
+              </optgroup>
+            </select>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-[#75675E] absolute right-4 top-3.5 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <div>
+          <label for="clientName" class="block text-xs font-medium text-[#75675E] uppercase tracking-wider mb-1.5">
+            Ваше имя
+          </label>
+          <input type="text" id="clientName" required placeholder="Например, Анна" class="w-full bg-[#F1EAE4] border border-[#D9CBC0] rounded-xl px-4 py-3 text-sm text-[#171412] placeholder-[#75675E]/50 focus:outline-none focus:border-[#B58A69] transition">
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label for="clientPhone" class="block text-xs font-medium text-[#75675E] uppercase tracking-wider mb-1.5">
+            Номер телефона
+          </label>
+          <input type="tel" id="clientPhone" required placeholder="+7 (___) ___-__-__" class="w-full bg-[#F1EAE4] border border-[#D9CBC0] rounded-xl px-4 py-3 text-sm text-[#171412] placeholder-[#75675E]/50 focus:outline-none focus:border-[#B58A69] transition">
+        </div>
+
+        <!-- Comment / Note (optional, auto-filled from Estimator) -->
+        <div>
+          <label for="clientComment" class="block text-xs font-medium text-[#75675E] uppercase tracking-wider mb-1.5">
+            Пожелания или расчет комплекса
+          </label>
+          <textarea id="clientComment" rows="2" placeholder="Желаемое время, мастер или пожелания к дизайну" class="w-full bg-[#F1EAE4] border border-[#D9CBC0] rounded-xl px-4 py-2.5 text-sm text-[#171412] placeholder-[#75675E]/50 focus:outline-none focus:border-[#B58A69] transition resize-none"></textarea>
+        </div>
+
+        <!-- Personal Data Consent Notice -->
+        <p class="text-[11px] text-[#75675E] leading-normal pt-1">
+          Нажимая «Подтвердить бронирование», вы соглашаетесь с 
+          <button type="button" data-open-legal="privacy" class="underline hover:text-[#171412] transition">Политикой конфиденциальности</button>
+          и даете 
+          <button type="button" data-open-legal="consent" class="underline hover:text-[#171412] transition">согласие на обработку данных (152-ФЗ)</button>.
+        </p>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-[#171412] text-[#FAF7F4] py-4 rounded-xl text-sm font-medium hover:bg-[#B58A69] transition duration-300 shadow-soft mt-1">
+          Подтвердить бронирование
+        </button>
+
+      </form>
+
+      <!-- Direct links -->
+      <div class="mt-6 pt-4 border-t border-[#D9CBC0]/60 flex items-center justify-between text-xs text-[#75675E]">
+        <span>Или напрямую:</span>
+        <div class="flex items-center space-x-3">
+          <a href="https://wa.me/79183484208" target="_blank" rel="noopener noreferrer" class="text-[#B58A69] hover:underline font-medium">WhatsApp</a>
+          <span>·</span>
+          <a href="https://yandex.ru/maps/org/osnova_manikyura/221055728812/?indoorLevel=1&ll=38.982455%2C45.046368&z=17" target="_blank" rel="noopener noreferrer" class="text-[#B58A69] hover:underline font-medium">Яндекс Карты</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== COOKIE CONSENT BANNER ==================== -->
+  <div id="cookieBanner" class="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-500 ease-out" role="region" aria-label="Уведомление о файлах cookie">
+    <div class="p-5 sm:p-6 rounded-3xl bg-[#FAF7F4]/95 backdrop-blur-xl border border-[#D9CBC0] shadow-2xl text-[#171412] relative overflow-hidden">
+      
+      <!-- Subtle luxury accent glow -->
+      <div class="absolute -top-12 -right-12 w-28 h-28 rounded-full bg-[#B58A69]/15 blur-2xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-full bg-[#E8DDD3]/70 flex items-center justify-center text-[#B58A69]">
+              <i data-lucide="cookie" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-semibold tracking-luxury uppercase text-[#B58A69] block">Файлы Cookie</span>
+              <h4 class="text-sm font-medium text-[#171412]">Мы заботимся о вашем комфорте</h4>
+            </div>
+          </div>
+          <button id="cookieCloseBtn" class="w-7 h-7 rounded-full bg-[#E8DDD3]/40 flex items-center justify-center text-[#75675E] hover:text-[#171412] hover:bg-[#E8DDD3] transition" aria-label="Закрыть уведомление">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <p class="text-xs text-[#75675E] font-normal leading-relaxed mb-4">
+          Мы используем cookie и аналитические инструменты для улучшения работы сайта и комфортной записи. Продолжая использование, вы соглашаетесь с 
+          <button type="button" data-open-legal="privacy" class="text-[#171412] underline underline-offset-2 hover:text-[#B58A69] transition font-medium">Политикой конфиденциальности</button>.
+        </p>
+
+        <div class="flex items-center gap-2.5">
+          <button id="cookieAcceptAllBtn" class="btn-luxury flex-1 py-2.5 px-4 rounded-full bg-[#171412] text-[#FAF7F4] text-xs font-medium hover:bg-[#B58A69] transition duration-300 shadow-sm text-center">
+            Принять все
+          </button>
+          <button id="cookieEssentialOnlyBtn" class="btn-luxury py-2.5 px-4 rounded-full bg-white/80 border border-[#D9CBC0] text-[#171412] text-xs font-medium hover:bg-white transition duration-300 text-center">
+            Только необходимые
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== LEGAL DOCUMENTS MODAL ==================== -->
+  <div id="legalModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#171412]/60 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+    <div class="modal-content relative w-full max-w-2xl bg-[#FAF7F4] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#D9CBC0]/60 text-[#171412] flex flex-col max-h-[90vh]">
+      
+      <!-- Close Button -->
+      <button id="closeLegalModalBtn" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E8DDD3]/50 flex items-center justify-center text-[#171412] hover:bg-[#171412] hover:text-[#FAF7F4] transition" aria-label="Закрыть окно">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="mb-4 pr-10">
+        <span class="text-xs font-semibold tracking-luxury uppercase text-[#B58A69] block mb-1">OSNOVA · Юридическая информация</span>
+        <h3 id="legalModalTitle" class="text-2xl font-light tracking-tight font-display">Правовые документы</h3>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center space-x-2 pb-4 border-b border-[#D9CBC0]/60 overflow-x-auto text-xs font-medium">
+        <button type="button" data-legal-tab="privacy" class="legal-tab-btn active px-4 py-2 rounded-full border border-[#D9CBC0] transition whitespace-nowrap">
+          Конфиденциальность
+        </button>
+        <button type="button" data-legal-tab="terms" class="legal-tab-btn px-4 py-2 rounded-full border border-[#D9CBC0] text-[#75675E] hover:text-[#171412] transition whitespace-nowrap">
+          Пользовательское соглашение
+        </button>
+        <button type="button" data-legal-tab="consent" class="legal-tab-btn px-4 py-2 rounded-full border border-[#D9CBC0] text-[#75675E] hover:text-[#171412] transition whitespace-nowrap">
+          Согласие (152-ФЗ)
+        </button>
+        <button type="button" data-legal-tab="guarantee" class="legal-tab-btn px-4 py-2 rounded-full border border-[#D9CBC0] text-[#75675E] hover:text-[#171412] transition whitespace-nowrap">
+          Гарантия и правила
+        </button>
+      </div>
+
+      <!-- Document Content (Scrollable) -->
+      <div class="legal-content-scroll py-4 text-xs sm:text-sm text-[#75675E] leading-relaxed space-y-4">
+        
+        <!-- Tab 1: Privacy Policy -->
+        <div id="legalTabPrivacy" class="space-y-4">
+          <h4 class="text-base font-medium text-[#171412]">Политика в отношении обработки персональных данных</h4>
+          <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта студии маникюра и педикюра «Основа» (OSNOVA), расположенной по адресу: г. Краснодар, ул. Коммунаров, 266.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">1. Сбор и использование персональных данных</h5>
+          <p>Студия собирает персональные данные исключительно для целей бронирования визита, обратной связи и подтверждения записи: имя клиента, контактный номер телефона, выбранные услуги и удобное время визита.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">2. Конфиденциальность и безопасность</h5>
+          <p>Мы гарантируем, что персональные данные не передаются третьим лицам, за исключением случаев, предусмотренных законодательством РФ (Федеральный закон № 152-ФЗ «О персональных данных»). Применяются современные технические меры защиты информации.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">3. Использование файлов Cookie</h5>
+          <p>Сайт использует файлы cookie для корректной работы интерактивных функций, сохранения настроек и анализа посещаемости. Вы можете отключить cookie в настройках браузера в любой момент.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">4. Отзыв согласия</h5>
+          <p>Пользователь имеет право в любой момент отозвать свое согласие на обработку данных, связавшись с администратором студии по телефону: +7 (918) 348-42-08.</p>
+        </div>
+
+        <!-- Tab 2: Terms of Service -->
+        <div id="legalTabTerms" class="space-y-4 hidden">
+          <h4 class="text-base font-medium text-[#171412]">Пользовательское соглашение</h4>
+          <p>Настоящее Соглашение регулирует отношения между студией красоты «Основа» и пользователем сайта при ознакомлении с услугами студии и оформлении предварительной записи.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">1. Условия предварительной записи</h5>
+          <p>Отправка формы бронирования на сайте является предварительной заявкой. Время визита считается зафиксированным только после подтверждения администратором студии по телефону или в мессенджере.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">2. Стоимость услуг</h5>
+          <p>Цены на сайте соответствуют действующему прайс-листу. Точная стоимость услуги согласовывается мастером до начала процедуры с учетом категории мастера и выбранных дополнительных опций (дизайн, снятие, уход).</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">3. Интеллектуальная собственность</h5>
+          <p>Логотип OSNOVA, графические материалы, тексты и фотографии являются интеллектуальной собственностью студии «Основа». Любое копирование без письменного согласия правообладателя запрещено.</p>
+        </div>
+
+        <!-- Tab 3: Consent to Data Processing -->
+        <div id="legalTabConsent" class="space-y-4 hidden">
+          <h4 class="text-base font-medium text-[#171412]">Согласие на обработку персональных данных</h4>
+          <p>Заполняя форму обратной связи или онлайн-записи на сайте, я свободно, своей волей и в своем интересе выражаю согласие студии «Основа» (OSNOVA) на обработку моих персональных данных:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Фамилия, имя, отчество;</li>
+            <li>Контактный номер телефона;</li>
+            <li>История посещений и предпочтений по процедурам.</li>
+          </ul>
+          <p class="pt-2">Обработка включает: сбор, запись, систематизацию, накопление, хранение, уточнение, использование для бронирования времени, отправку сервисных сообщений с подтверждением визита, удаление по требованию.</p>
+          <p>Согласие действует бессрочно с момента предоставления данных и может быть отозвано по обращению к администратору студии.</p>
+        </div>
+
+        <!-- Tab 4: Guarantee & Studio Rules -->
+        <div id="legalTabGuarantee" class="space-y-4 hidden">
+          <h4 class="text-base font-medium text-[#171412]">Гарантийные обязательства и правила студии</h4>
+          <h5 class="text-sm font-semibold text-[#171412] pt-1">1. Гарантия на стойкость покрытия — 7 дней</h5>
+          <p>Студия «Основа» предоставляет безусловную гарантию 7 дней на стойкость покрытия гель-лаком. В случае скола или отслойки материала не по причине грубого механического повреждения мастер бесплатно устранит дефект.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">2. 100% стерильность по нормам СанПиН</h5>
+          <p>Безопасность каждого гостя — фундаментальный стандарт студии. Все металлические инструменты проходят трехэтапную очистку: дезинфекция в сертифицированном растворе, ультразвуковая мойка, воздушная стерилизация в сухожаровом шкафу Ферропласт. Крафт-пакет вскрывается строго при госте. Пилочки, бафы и апельсиновые палочки — строго одноразовые.</p>
+          <h5 class="text-sm font-semibold text-[#171412] pt-2">3. Перенос и отмена визита</h5>
+          <p>Мы ценим ваше время и время мастеров. Если ваши планы изменились, пожалуйста, предупредите нас об отмене или переносе записи не менее чем за 2 часа до назначенного времени.</p>
+        </div>
+
+      </div>
+
+      <!-- Footer Action -->
+      <div class="pt-4 border-t border-[#D9CBC0]/60 flex justify-end">
+        <button id="closeLegalModalBtnBottom" class="btn-luxury py-2.5 px-6 rounded-full bg-[#171412] text-[#FAF7F4] text-xs font-medium hover:bg-[#B58A69] transition">
+          Понятно
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toastSuccess" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 max-w-md bg-[#FAF7F4] text-[#171412] p-4 rounded-2xl shadow-2xl border border-[#D9CBC0] flex items-start space-x-3">
+    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <div class="text-xs sm:text-sm">
+      <p class="font-medium text-[#171412]">Заявка принята!</p>
+      <p class="toast-msg text-[#75675E] mt-0.5">Мы свяжемся с вами в ближайшее время для подтверждения визита.</p>
+    </div>
+  </div>
+
+  <!-- ==================== MOBILE FLOATING BOOKING BAR ==================== -->
+  <div id="mobileFloatingBar" class="fixed bottom-4 inset-x-4 z-40 sm:hidden transform translate-y-28 opacity-0 pointer-events-none transition-all duration-300">
+    <button data-open-booking class="w-full bg-[#171412]/95 backdrop-blur-md text-[#FAF7F4] py-3.5 px-6 rounded-full text-sm font-medium shadow-2xl flex items-center justify-between border border-[#D9CBC0]/30 active:scale-[0.98] transition">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="calendar" class="w-4 h-4 text-[#B58A69]"></i>
+        <span>Записаться в OSNOVA</span>
+      </div>
+      <span class="text-xs bg-[#B58A69] text-[#171412] px-2.5 py-1 rounded-full font-semibold">5.0 ★</span>
+    </button>
+  </div>
+
+  <!-- Initialize Lucide Icons & Custom Script -->
+  <script src="script.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

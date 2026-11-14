@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #F1EAE4;
+  --bg-hero: #EEE6E0;
+  --bg-secondary: #E8DDD3;
+  --surface-light: #FAF7F4;
+  --text-main: #171412;
+  --text-secondary: #75675E;
+  --accent: #B58A69;
+  --accent-hover: #9E7453;
+  --divider: #D9CBC0;
+  --dark-section: #211C19;
+  --dark-surface: #2C2420;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+
+/* Custom Typography */
+.font-display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.035em;
+}
+
+.tracking-luxury {
+  letter-spacing: 0.18em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--divider);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Header Base State: Completely transparent at top of page */
+.header-glass-bar {
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-bottom-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Header Scrolled State: Frosted glass blur appears on first scroll */
+.header-glass-bar.header-scrolled {
+  background-color: rgba(238, 230, 224, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(217, 203, 192, 0.65);
+  box-shadow: 0 4px 24px -2px rgba(117, 103, 94, 0.08);
+}
+
+/* Scroll progress container visibility linked to scroll state */
+#scrollProgressContainer {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.header-glass-bar.header-scrolled #scrollProgressContainer {
+  opacity: 1;
+}
+
+/* Frosted Capsule Style (Photo 1 reference) */
+.frosted-capsule {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 4px 20px -2px rgba(117, 103, 94, 0.08);
+}
+
+/* Active Light Pill in Capsule (Photo 1 reference) */
+.active-light-pill {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-main);
+  box-shadow: 0 2px 8px rgba(23, 20, 18, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Hero Girl Image Container (Strictly transparent) */
+.hero-image-wrap {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Hero Girl Image (Silky smooth non-linear bottom dissolve) */
+.hero-girl-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 84%,
+    rgba(0, 0, 0, 0.96) 87%,
+    rgba(0, 0, 0, 0.88) 90%,
+    rgba(0, 0, 0, 0.74) 93%,
+    rgba(0, 0, 0, 0.54) 95.5%,
+    rgba(0, 0, 0, 0.32) 97.5%,
+    rgba(0, 0, 0, 0.12) 99%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 84%,
+    rgba(0, 0, 0, 0.96) 87%,
+    rgba(0, 0, 0, 0.88) 90%,
+    rgba(0, 0, 0, 0.74) 93%,
+    rgba(0, 0, 0, 0.54) 95.5%,
+    rgba(0, 0, 0, 0.32) 97.5%,
+    rgba(0, 0, 0, 0.12) 99%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .hero-girl-img {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    height: 480px;
+    width: 100%;
+    object-position: right bottom !important;
+  }
+}
+
+/* Accordion Smooth Transition without overlapping */
+.accordion-item {
+  border-bottom: 1px solid var(--divider);
+  transition: background-color 0.2s ease;
+}
+
+.accordion-trigger {
+  width: 100%;
+  cursor: pointer;
+}
+
+.accordion-chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.accordion-item.active .accordion-panel {
+  opacity: 1;
+}
+
+.accordion-item.active .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* Modal Animations */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  transform: translateY(20px) scale(0.97);
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+  opacity: 0;
+}
+
+.modal-backdrop.open .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Subtle Organic Shadows */
+.shadow-soft {
+  box-shadow: 0 10px 30px -10px rgba(23, 20, 18, 0.06);
+}
+
+.shadow-card {
+  box-shadow: 0 20px 40px -15px rgba(23, 20, 18, 0.08);
+}
+
+.shadow-nav {
+  box-shadow: 0 8px 32px 0 rgba(117, 103, 94, 0.08);
+}
+
+/* Hover transitions */
+.btn-luxury {
+  transition: all 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-luxury:hover {
+  transform: translateY(-1px);
+}
+
+.btn-luxury:active {
+  transform: translateY(0);
+}
+
+/* Luxury Card Hover Micro-Interactions */
+.luxury-card-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+}
+
+.luxury-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(117, 103, 94, 0.12);
+  border-color: var(--accent);
+}
+
+/* Legal Documents Scrollable Body */
+.legal-content-scroll {
+  max-height: 55vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+}
+.legal-content-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.legal-content-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--divider);
+  border-radius: 9999px;
+}
+
+/* Legal Modal Tab Active State */
+.legal-tab-btn.active {
+  background-color: var(--text-main);
+  color: var(--surface-light);
+  border-color: var(--text-main);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
